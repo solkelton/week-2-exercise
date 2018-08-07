@@ -18,8 +18,18 @@ public interface StockRepository extends JpaRepository<StockRecord, Long> {
       + "from " + dbName + " "
       + "where symbol = ?1 and date_format(date, '%Y-%m-%d') = ?2 "
       + "order by date desc limit 1", nativeQuery = true)
-  Double getClosingPrice(String symbol, String date);
+  Double getClosingPriceBySymbolAndDate(String symbol, String date);
 
+  @Query(value = "select new io.training.week2.AggregatedData(max(s.price), min(s.price), sum(s.volume)) "
+      + "from StockRecord s "
+      + "where s.symbol = ?1 and function('month', s.date) = function('month', ?2)")
+  AggregatedData getDataBySymbolAndMonth(String symbol, String date);
+
+  @Query(value = "select price "
+      + "from " + dbName + " "
+      + "where symbol = ?1 and month(date) = month(?2) "
+      + "order by date desc limit 1", nativeQuery = true)
+  Double getClosingPriceBySymbolAndMonth(String symbol, String date);
 
 
 }

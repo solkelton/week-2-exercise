@@ -1,11 +1,5 @@
 package io.training.week2;
 
-import java.awt.print.Pageable;
-import java.util.List;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
-import org.springframework.data.domain.Sort.Direction;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,7 +22,14 @@ public class StockController {
   @GetMapping("/{stock}/{date}")
   public AggregatedData queryByStockAndDate(@PathVariable("stock") String stock, @PathVariable("date") String date) {
     aggregatedData = stockRepository.getDataBySymbolAndDate(stock, date);
-    aggregatedData.setClosingPrice(stockRepository.getClosingPrice(stock, date));
+    aggregatedData.setClosingPrice(stockRepository.getClosingPriceBySymbolAndDate(stock, date));
+    return aggregatedData;
+  }
+
+  @GetMapping("month/{stock}/{date}")
+  public AggregatedData queryByStockAndMonth(@PathVariable("stock") String stock, @PathVariable("date") String date) {
+    aggregatedData = stockRepository.getDataBySymbolAndMonth(stock, date);
+    aggregatedData.setClosingPrice(stockRepository.getClosingPriceBySymbolAndMonth(stock, date));
     return aggregatedData;
   }
 
