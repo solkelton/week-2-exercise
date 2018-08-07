@@ -5,13 +5,13 @@ public class AggregatedData {
   private Double maxPrice;
   private Double minPrice;
   private Long volume;
-//  private Double closingPrice;
+  private Double closingPrice;
 
   public AggregatedData(Double maxPrice, Double minPrice, Long volume) {
     this.maxPrice = maxPrice;
     this.minPrice = minPrice;
     this.volume = volume;
-//    this.closingPrice = closingPrice;
+    this.closingPrice = closingPrice;
   }
 
   public Double getMaxPrice() {
@@ -38,11 +38,11 @@ public class AggregatedData {
     this.volume = volume;
   }
 
-//  public Double getClosingPrice() {
-//    return closingPrice;
-//  }
-//
-//  public void setClosingPrice(Double closingPrice) {
-//    this.closingPrice = closingPrice;
-//  }
+  public Double getClosingPrice() {
+    return closingPrice;
+  }
+
+  public void setClosingPrice(Double closingPrice) {
+    this.closingPrice = closingPrice;
+  }
 }
