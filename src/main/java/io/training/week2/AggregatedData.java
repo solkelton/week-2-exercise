@@ -1,6 +1,6 @@
 package io.training.week2;
 
-public class AggregatedData {
+public class AggregatedData{
 
   private Double maxPrice;
   private Double minPrice;
@@ -11,7 +11,7 @@ public class AggregatedData {
     this.maxPrice = maxPrice;
     this.minPrice = minPrice;
     this.volume = volume;
-    this.closingPrice = closingPrice;
+    this.closingPrice = -1.0;
   }
 
   public Double getMaxPrice() {
